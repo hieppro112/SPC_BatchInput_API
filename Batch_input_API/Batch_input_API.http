@@ -1,0 +1,6 @@
+@Batch_input_API_HostAddress = http://localhost:5044
+
+GET {{Batch_input_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
