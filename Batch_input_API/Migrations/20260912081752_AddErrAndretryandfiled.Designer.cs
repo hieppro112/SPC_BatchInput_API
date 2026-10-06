@@ -4,6 +4,7 @@ using Batch_input_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Batch_input_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260912081752_AddErrAndretryandfiled")]
+    partial class AddErrAndretryandfiled
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,9 +44,6 @@ namespace Batch_input_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RUNTIME")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Shift")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -59,7 +59,7 @@ namespace Batch_input_API.Migrations
                     b.Property<bool>("isComplate")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("isDelete")
+                    b.Property<bool>("isError")
                         .HasColumnType("bit");
 
                     b.Property<int>("numRetry")
@@ -81,16 +81,14 @@ namespace Batch_input_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("DescriptionPO")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("IDGroup")
                         .HasColumnType("int");
 
                     b.Property<string>("Po")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("isComplate")
+                    b.Property<bool>("isComplate")
                         .HasColumnType("bit");
 
                     b.HasKey("ID");
