@@ -8,8 +8,7 @@
         public string msnv { get; set; } = string.Empty;
         public string? Shift { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
-
-        public List<String> ListPO { get; set; } = new();
+        public List<String> ListPO { get; set; }
 
 
     }

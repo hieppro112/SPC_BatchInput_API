@@ -35,6 +35,16 @@ namespace Batch_input_API.Data
                 .WithOne(x => x.BatchInputHistory)
                 .HasForeignKey(x => x.IDGroup)
                 .OnDelete(DeleteBehavior.Cascade);//cha bị xdiróa thì cha cũng bị xóa 
+
+
+            // Khai báo rõ mối quan hệ 1 - N
+            modelBuilder.Entity<ListPO>()
+                .HasOne(x => x.BatchInputHistory)
+                .WithMany(x => x.ListPOs)
+                .HasForeignKey(x => x.IDGroup)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
         }
     }
 }

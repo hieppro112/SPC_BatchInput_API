@@ -17,8 +17,10 @@ namespace Batch_input_API.ResponseDto
         public string? Shift { get; set; }
         public bool? isComplate { get; set; } 
         public DateTime? DateCreated { get; set; } = DateTime.Now;
-
-
-        public List<PODto> ListPO { get; set; } = new();
+        public int numRetry { get; set; } = 0;
+        public string description { get; set; } = string.Empty;
+        public bool isDelete { get; set; } = false;
+        public DateTime RunTime { get; set; } = DateTime.Now;
+        public IEnumerable<PODto> ListPO { get; set; }
     }
 }

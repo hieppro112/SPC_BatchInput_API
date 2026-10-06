@@ -10,8 +10,11 @@
         public string Shift { get; set; } = string.Empty;
         public bool isComplate { get; set; } = false;
         public DateTime? DateCreated { get; set; } = DateTime.Now;
-
-        public List<ListPO> ListPOs { get; set; } = new();
+        public int numRetry { get; set; }=0;
+        public string description { get; set; } = string.Empty;
+        public bool isDelete { get; set; } = false;
+        public DateTime RUNTIME { get; set; } = DateTime.Now;
+        public List<ListPO> ListPOs { get; set; } = new List<ListPO>();
 
     }
 }
