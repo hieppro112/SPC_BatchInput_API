@@ -81,7 +81,7 @@ namespace Batch_input_API.Controllers
             var delayTime = DateTime.Now.AddMinutes(-20);
             var Data = await _context.BatchInputHistories
                 .Include(x => x.ListPOs)
-                .Where(x => x.isComplate == false && x.isDelete == false && (x.numRetry==0|| x.RUNTIME <= delayTime))
+                .Where(x => x.isComplate == false && x.isDelete == false && (x.numRetry==0|| x.RUNTIME <= delayTime)&& x.numRetry<=10)
                 .Select(x => new BatchInputResponseDto
                 {
                     Id = x.ID,
