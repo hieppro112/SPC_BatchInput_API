@@ -102,16 +102,14 @@ namespace Batch_input_API.Controllers
                         IDGroup = p.IDGroup,
                         Po = p.Po,
                         isComplate=p.isComplate??false,
+                        DesPO = p.DescriptionPO ?? "null"
                     }).ToList()
                 }).ToListAsync();
 
             return Ok(Data);
         }
 
-
-        /// <summary>
-        /// GET ALL (phân trang)
-        /// </summary>
+        //get all
         [HttpGet]
         public async Task<IActionResult> GetAll_BatchInput([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
         {
@@ -149,8 +147,8 @@ namespace Batch_input_API.Controllers
                         IDGroup = p.IDGroup,
                         Po = p.Po ?? "",
                         isComplate = p.isComplate ?? false,
-                        DesPO = p.DescriptionPO
-
+                        DesPO = p.DescriptionPO??""
+                        
                     }).ToList(),
                 })
                 .ToListAsync();
@@ -192,6 +190,7 @@ namespace Batch_input_API.Controllers
                         IDGroup = p.IDGroup,
                         Po = p.Po ?? "",
                         isComplate= p.isComplate??false,
+                        DesPO = p.DescriptionPO??"null"
                     }).ToList()
                 }).FirstOrDefaultAsync();
 
