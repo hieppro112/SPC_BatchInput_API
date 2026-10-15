@@ -62,7 +62,10 @@ namespace Batch_input_API.Controllers
                 {
                     ID = x.ID,
                     Po = x.Po,
-                    IDGroup = x.IDGroup
+                    IDGroup = x.IDGroup,
+                    DesPO = x.DescriptionPO ?? "null",
+                    isComplate = x.isComplate ?? false
+
                 })
                 .ToList()
             };
