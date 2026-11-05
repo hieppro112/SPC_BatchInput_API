@@ -207,13 +207,13 @@ namespace Batch_input_API.Controllers
         /// </summary>
         /// 
         [HttpPut("Update/RunTime/{id}")]
-        public async Task<IActionResult> Update_runtime(int id)
+        public async Task<IActionResult> Update_runtime(int id,DateTime? runtime)
         {
             var data = await _context.BatchInputHistories
                 .Include(x => x.ListPOs)
                 .FirstOrDefaultAsync(x => x.ID == id);
             if (data == null) return NotFound("Không tìm thấy dữ liệu");
-            data.RUNTIME = DateTime.Now;
+            data.RUNTIME =runtime ?? DateTime.Now;
             await _context.SaveChangesAsync();
             return Ok(new { message = "cap nhat thanh cong" });
         }
