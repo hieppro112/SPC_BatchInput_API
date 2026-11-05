@@ -62,7 +62,10 @@ namespace Batch_input_API.Controllers
                 {
                     ID = x.ID,
                     Po = x.Po,
-                    IDGroup = x.IDGroup
+                    IDGroup = x.IDGroup,
+                    DesPO = x.DescriptionPO ?? "null",
+                    isComplate = x.isComplate ?? false
+
                 })
                 .ToList()
             };
@@ -102,16 +105,14 @@ namespace Batch_input_API.Controllers
                         IDGroup = p.IDGroup,
                         Po = p.Po,
                         isComplate=p.isComplate??false,
+                        DesPO = p.DescriptionPO ?? "null"
                     }).ToList()
                 }).ToListAsync();
 
             return Ok(Data);
         }
 
-
-        /// <summary>
-        /// GET ALL (phân trang)
-        /// </summary>
+        //get all
         [HttpGet]
         public async Task<IActionResult> GetAll_BatchInput([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
         {
@@ -149,8 +150,8 @@ namespace Batch_input_API.Controllers
                         IDGroup = p.IDGroup,
                         Po = p.Po ?? "",
                         isComplate = p.isComplate ?? false,
-                        DesPO = p.DescriptionPO
-
+                        DesPO = p.DescriptionPO??""
+                        
                     }).ToList(),
                 })
                 .ToListAsync();
@@ -192,6 +193,7 @@ namespace Batch_input_API.Controllers
                         IDGroup = p.IDGroup,
                         Po = p.Po ?? "",
                         isComplate= p.isComplate??false,
+                        DesPO = p.DescriptionPO??"null"
                     }).ToList()
                 }).FirstOrDefaultAsync();
 
@@ -205,13 +207,13 @@ namespace Batch_input_API.Controllers
         /// </summary>
         /// 
         [HttpPut("Update/RunTime/{id}")]
-        public async Task<IActionResult> Update_runtime(int id)
+        public async Task<IActionResult> Update_runtime(int id,DateTime? runtime)
         {
             var data = await _context.BatchInputHistories
                 .Include(x => x.ListPOs)
                 .FirstOrDefaultAsync(x => x.ID == id);
             if (data == null) return NotFound("Không tìm thấy dữ liệu");
-            data.RUNTIME = DateTime.Now;
+            data.RUNTIME =runtime ?? DateTime.Now;
             await _context.SaveChangesAsync();
             return Ok(new { message = "cap nhat thanh cong" });
         }
